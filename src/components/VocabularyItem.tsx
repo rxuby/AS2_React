@@ -1,23 +1,83 @@
+// import React from "react";
+
+// interface Props {
+//     checked: boolean;
+//     word: {
+//         word: string;
+//         locked?: boolean;
+//     };
+//     onClick: (
+//         word:{
+//             word: string;
+//             locked?: boolean
+//         }
+//     ) => void;
+
+//     onLock: (  word:{
+//             word: string;
+//             locked?: boolean
+//         }) => void;
+// }
+
+// const VocabularyItem: React.FC<Props> = ({
+//   word,
+//   onClick,
+//   checked,
+//   onLock,
+// }) => {
+//   const handleClick = () => {
+//     onClick(word);
+//   };
+
+//   const handleLock = () => {
+//     onLock(word);
+//   }
+
+//   return (
+//     //   <div onClick={handleClick}>
+//     //     {word.word} {word.locked && <span>icon</span>}
+//     //     <i className="bi bi-unlock"></i>
+//     //   </div>
+//     <>
+//       {checked ? (
+//         <div>
+//           {" "}
+//           <span onClick={handleClick}>{word.word} </span>{" "}
+//           <div>
+//             {word.locked ? (
+//               <i
+//                 className="bi bi-lock"
+//                 onClick={handleLock}
+//               ></i>
+//             ) : (
+//               <i
+//                 className="bi bi-unlock"
+//                 onClick={handleLock}
+//               ></i>
+//             )}
+//           </div>
+//           {/* <i className={'bi ${isLocked "bi bi-lock" : "bi bi-unlock"}'}></i> */}
+//         </div>
+//       ) : (
+//         <div onClick={handleClick}>{word.word}</div>
+//       )}
+//     </>
+//   );
+// };
+
+// export default VocabularyItem
+
+
 import React from "react";
 
-
 interface Props {
-    checked: boolean;
-    word: {
-        word: string;
-        locked?: boolean;
-    };
-    onClick: (
-        word:{
-            word: string;
-            locked?: boolean
-        }
-    ) => void;
-
-    onLock: (  word:{
-            word: string;
-            locked?: boolean
-        }) => void;
+  checked: boolean;
+  word: {
+    word: string;
+    locked?: boolean;
+  };
+  onClick: (word: { word: string; locked?: boolean }) => void;
+  onLock: (word: { word: string; locked?: boolean }) => void;
 }
 
 const VocabularyItem: React.FC<Props> = ({
@@ -27,19 +87,17 @@ const VocabularyItem: React.FC<Props> = ({
   onLock,
 }) => {
   const handleClick = () => {
-    onClick(word);
+    if (!word.locked) {
+      // เพิ่มตรงนี้เช็คว่าคำศัพท์ถูกล็อคไหม
+      onClick(word);
+    }
   };
-
 
   const handleLock = () => {
     onLock(word);
-  }
+  };
 
   return (
-    //   <div onClick={handleClick}>
-    //     {word.word} {word.locked && <span>icon</span>}
-    //     <i className="bi bi-unlock"></i>
-    //   </div>
     <>
       {checked ? (
         <div>
@@ -47,18 +105,11 @@ const VocabularyItem: React.FC<Props> = ({
           <span onClick={handleClick}>{word.word} </span>{" "}
           <div>
             {word.locked ? (
-              <i
-                className="bi bi-lock"
-                onClick={handleLock}
-              ></i>
+              <i className="bi bi-lock" onClick={handleLock}></i>
             ) : (
-              <i
-                className="bi bi-unlock"
-                onClick={handleLock}
-              ></i>
+              <i className="bi bi-unlock" onClick={handleLock}></i>
             )}
           </div>
-          {/* <i className={'bi ${isLocked "bi bi-lock" : "bi bi-unlock"}'}></i> */}
         </div>
       ) : (
         <div onClick={handleClick}>{word.word}</div>
@@ -66,5 +117,5 @@ const VocabularyItem: React.FC<Props> = ({
     </>
   );
 };
-  
-export default VocabularyItem
+
+export default VocabularyItem;

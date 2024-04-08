@@ -31,3 +31,4 @@ const VocabularyList: React.FC<Props> = ({ title, vocabulary, onClick, check,onL
 }
 
 export default VocabularyList
+
