@@ -145,7 +145,7 @@ const Checklist: React.FC = () => {
     getWord();
   }, []);
 
-  //เพิ่มฟังก์ชัน useEffect อีกอัน
+  //เพิ่มฟังก์ชัน useEffect อีกอันสำหรับ timeRemove
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemove();

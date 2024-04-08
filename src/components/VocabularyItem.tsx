@@ -88,7 +88,7 @@ const VocabularyItem: React.FC<Props> = ({
 }) => {
   const handleClick = () => {
     if (!word.locked) {
-      // เพิ่มตรงนี้เช็คว่าคำศัพท์ถูกล็อคไหม
+      // ตอนทำTimeRemoveให้เพิ่มตรงนี้เช็คว่าคำศัพท์ถูกล็อคไหม
       onClick(word);
     }
   };
