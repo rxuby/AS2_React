@@ -37,10 +37,10 @@ const VocabularyItem: React.FC<Props> = ({
             <button className="button-word-list text-center place-content-center flex ">
             <span onClick={handleClick}>{word.word} </span>{" "}
             {word.locked ? (
-              <IoLockClosedOutline onClick={handleLock} className="ml-auto" />
+              <IoLockClosedOutline onClick={handleLock} className="icon" />
             ) : (
               // <i className="bi bi-lock" onClick={handleLock}></i>
-              <IoLockOpenOutline onClick={handleLock} className="ml-auto" />
+              <IoLockOpenOutline onClick={handleLock} className="icon" />
               // <i className="bi bi-unlock" onClick={handleLock}></i>
             )}
             </button>

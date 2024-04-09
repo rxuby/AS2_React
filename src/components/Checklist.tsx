@@ -40,11 +40,11 @@ const Checklist: React.FC = () => {
 
     // ตรวจสอบว่ามีคำที่ต้องการลบหรือไม่
     if (thaiWordToRemoveIndex !== -1) {
-      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state 
+      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state
       setWord((prevWord) => [
         ...prevWord,
-        ...(thaiWordToRemoveIndex !== -1
-          ? [thaiWord[thaiWordToRemoveIndex]] : []),
+        ...(thaiWordToRemoveIndex !== -1 ? [thaiWord[thaiWordToRemoveIndex]]
+          : []),
       ]);
 
       setThaiWord((prevThaiWord) =>
@@ -150,10 +150,10 @@ const Checklist: React.FC = () => {
   };
 
   return (
-    <div className="vocab-list">
+    <div className="vocab-list ">
       <Topic />
-      <div className="word-box grid grid-cols-3 gap-6 w-5/5 ">
-        <div className="border rounded-[12px] p-[20px]">
+      <div className="word-box grid grid-cols-3 gap-6">
+        <div className="word-box-i border rounded-[10px] p-[20px]">
           <VocabularyList
             // title="คำศัพท์"
             check={false}
@@ -163,7 +163,7 @@ const Checklist: React.FC = () => {
           />
         </div>
 
-        <div className="border rounded-[12px] p-[20px]">
+        <div className="word-box-i border rounded-[10px] p-[20px]">
           <VocabularyList
             // title="ภาษาไทย"
             check={true}
@@ -173,7 +173,7 @@ const Checklist: React.FC = () => {
           />
         </div>
 
-        <div className="border rounded-[12px] p-[20px]">
+        <div className="word-box-i border rounded-[10px] p-[20px]">
           <VocabularyList
             // title="ภาษาอังกฤษ"
             check={true}
