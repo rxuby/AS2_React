@@ -2,7 +2,7 @@ import React from 'react'
 import VocabularyItem from "./VocabularyItem";
 
 interface Props {
-  title: string;
+  title?: string;
   check: boolean;
   vocabulary: {
     word: string;
@@ -12,11 +12,11 @@ interface Props {
   onClick: (index: number, lang: string, locked: boolean) => void;
   onLock: (index: number, lang: string, locked: boolean) => void;
 }
-
-const VocabularyList: React.FC<Props> = ({ title, vocabulary, onClick, check,onLock }) => {
+                                      //({ title, vocabulary, onClick, check,onLock }) 
+const VocabularyList: React.FC<Props> = ({ vocabulary, onClick, check,onLock }) => {
     return (
-      <div>
-        <h2>{title}</h2>
+      <div className='cursor-pointer'>
+        {/* <h2>{title}</h2> */}
         {vocabulary.map((word, index) => (
           <VocabularyItem
             key={index}

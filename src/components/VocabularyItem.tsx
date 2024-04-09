@@ -104,11 +104,11 @@ const VocabularyItem: React.FC<Props> = ({
         <div>
           {" "}
           <div className="flex gap-4 m-5 ">
-          <span onClick={handleClick}>{word.word} </span>{" "}
+            <span onClick={handleClick}>{word.word} </span>{" "}
             {word.locked ? (
               <IoLockClosedOutline onClick={handleLock} />
-              // <i className="bi bi-lock" onClick={handleLock}></i>
             ) : (
+              // <i className="bi bi-lock" onClick={handleLock}></i>
               <IoLockOpenOutline onClick={handleLock} />
               // <i className="bi bi-unlock" onClick={handleLock}></i>
             )}
