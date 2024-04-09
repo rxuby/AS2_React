@@ -20,40 +20,84 @@ const Checklist: React.FC = () => {
   }, []);
 
   //เพิ่มฟังก์ชัน useEffect อีกอันสำหรับ timeRemove
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      handleAutoRemove();
-    }, 5000);
+      handleAutoRemoveThai();
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
-  }, [thaiWord, engWord]);
+  }, [thaiWord]);
 
-  const handleAutoRemove = () => {
-    setWord((prevWord) => [
-      ...prevWord,
-      ...thaiWord.filter((word) => !word.locked),
-      ...engWord.filter((word) => !word.locked),
-    ]);
-    setThaiWord(thaiWord.filter((word) => word.locked));
-    setEngWord(engWord.filter((word) => word.locked));
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      handleAutoRemoveEng();
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [engWord]);
+
+  const handleAutoRemoveThai = () => {
+    //หา index ที่จะลบออกด้วยการเช็คว่าคำไหนไม่ถูกล็อค
+    const thaiWordToRemoveIndex = thaiWord.findIndex((word) => !word.locked);
+
+    // ตรวจสอบว่ามีคำที่ต้องการลบหรือไม่
+    if (thaiWordToRemoveIndex !== -1) {
+      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state ของ Word, thaiWord, และ engWord
+      setWord((prevWord) => [
+        ...prevWord,
+        ...(thaiWordToRemoveIndex !== -1
+          ? [thaiWord[thaiWordToRemoveIndex]] : []),
+      ]);
+
+      setThaiWord((prevThaiWord) =>
+        prevThaiWord.filter(
+          (_, index) =>
+            index !== thaiWordToRemoveIndex || prevThaiWord[index].locked
+        )
+      );
+    }
   };
 
+  const handleAutoRemoveEng = () => {
+    const engWordToRemoveIndex = engWord.findIndex((word) => !word.locked);
 
-  // useEffect(() =>{
-  //   const timeoutId = setInterval(() => {
-  //     const currentTime = new Date().getTime();
-  //     const newSelectedWords: { [key: string]: number } = {};
-  //     for (const word in selectedWords) {
-  //       const timePressed = selectWords[word];
-  //       if ((currentTime - timePressed) <= 5000) {
-  //         newSelectedWords[word] = timePressed;
-  //       }
-  //     }
-  //     setSelectedWords(newSelectedWords);
-  //   }, 1000);
+    // ตรวจสอบว่ามีคำที่ต้องการลบหรือไม่
+    if (engWordToRemoveIndex !== -1) {
+      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state ของ Word, thaiWord, และ engWord
+      setWord((prevWord) => [
+        ...prevWord,
+        ...(engWordToRemoveIndex !== -1 ? [engWord[engWordToRemoveIndex]] : []),
+      ]);
 
-  //   return () => clearInterval(timeoutId);
-  // }, [selectedWords]);
+      setEngWord((prevEngWord) =>
+        prevEngWord.filter(
+          (_, index) =>
+            index !== engWordToRemoveIndex || prevEngWord[index].locked
+        )
+      );
+    }
+  };
+
+  // const handleAutoRemove = () => {
+  //   const thaiWordToRemoveIndex = thaiWord.findIndex(word => !word.locked);
+  //   const engWordToRemoveIndex = engWord.findIndex(word => !word.locked);
+
+  //   // Remove words from the arrays if they are not locked
+  //   setWord((prevWord) => [
+  //     ...prevWord,
+  //     ...(thaiWordToRemoveIndex !== -1 ? [thaiWord[thaiWordToRemoveIndex]] : []),
+  //     ...(engWordToRemoveIndex !== -1 ? [engWord[engWordToRemoveIndex]] : []),
+  //   ]);
+
+  //   setThaiWord((prevThaiWord) =>
+  //     prevThaiWord.filter((_, index) => index !== thaiWordToRemoveIndex || prevThaiWord[index].locked)
+  //   );
+
+  //   setEngWord((prevEngWord) =>
+  //     prevEngWord.filter((_, index) => index !== engWordToRemoveIndex || prevEngWord[index].locked)
+  //   );
+  // };
 
   const getWord = async () => {
     try {
@@ -132,39 +176,37 @@ const Checklist: React.FC = () => {
 
   return (
     <div className="vocab-list">
-      <Topic/>
-      <div className="grid grid-cols-3 gap-20 mt-6">
-
-      <div className="rounded-[12px] p-[20px]">
-        <VocabularyList
-          // title="คำศัพท์"
-          check={false}
-          vocabulary={word}
-          onClick={handleClick}
-          onLock={handleLockWord}
-        />
+      <Topic />
+      <div className="word-box grid grid-cols-3 gap-6 w-5/5 ">
+        <div className="border rounded-[12px] p-[20px]">
+          <VocabularyList
+            // title="คำศัพท์"
+            check={false}
+            vocabulary={word}
+            onClick={handleClick}
+            onLock={handleLockWord}
+          />
         </div>
 
-   <div className="rounded-[12px] p-[20px]">
-        <VocabularyList
-          // title="ภาษาไทย"
-          check={true}
-          vocabulary={thaiWord}
-          onClick={handleResetWord}
-          onLock={handleLockWord}
-        />
-      </div>
-
-      <div className="rounded-[12px] p-[20px]">
-        <VocabularyList 
-          // title="ภาษาอังกฤษ"
-          check={true}
-          vocabulary={engWord}
-          onClick={handleResetWord}
-          onLock={handleLockWord}
-        />
+        <div className="border rounded-[12px] p-[20px]">
+          <VocabularyList
+            // title="ภาษาไทย"
+            check={true}
+            vocabulary={thaiWord}
+            onClick={handleResetWord}
+            onLock={handleLockWord}
+          />
         </div>
-     
+
+        <div className="border rounded-[12px] p-[20px]">
+          <VocabularyList
+            // title="ภาษาอังกฤษ"
+            check={true}
+            vocabulary={engWord}
+            onClick={handleResetWord}
+            onLock={handleLockWord}
+          />
+        </div>
       </div>
     </div>
   );

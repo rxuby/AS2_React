@@ -6,10 +6,10 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+/* 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -40,18 +40,23 @@ h1 {
 }
 
 button {
+  width: 100%;
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid rgb(218, 215, 215);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #fffffff9;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0px 5px 1px #ffffff;
 }
 button:hover {
-  border-color: #646cff;
+  border-color:#000000;
+  transition: .5s;
 }
 button:focus,
 button:focus-visible {
@@ -69,4 +74,22 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.word-list{
+  
+}
+
+.topic-list{
+
+}
+
+.word-box{
+  width: 100%;
+  
+}
+
+.vocab-list{
+  width: 800px;
+  
 }
