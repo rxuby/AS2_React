@@ -76,9 +76,33 @@ button:focus-visible {
   }
 }
 
-.word-list{
+.word-list {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.button-word-list { 
+  align-items: center; 
+  text-align: center;
   
 }
+
+button .button-word-list span {
+  margin-right: 0.5rem; 
+  
+}
+
+.lock-icon {
+  margin-left: 5px; 
+  cursor: pointer; 
+}
+
+
+.lock-icon {
+  margin-left: 0.5rem; 
+}
+
 
 .topic-list{
 

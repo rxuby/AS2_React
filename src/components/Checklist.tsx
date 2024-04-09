@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import VocabularyList from "./VocabularyList";
-import { BsCurrencyBitcoin } from "react-icons/bs";
-import { clearInterval } from "timers";
 import Topic from "./Topic";
 
 interface Word {
@@ -20,11 +18,10 @@ const Checklist: React.FC = () => {
   }, []);
 
   //เพิ่มฟังก์ชัน useEffect อีกอันสำหรับ timeRemove
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemoveThai();
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timeoutId);
   }, [thaiWord]);
@@ -32,18 +29,18 @@ const Checklist: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemoveEng();
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timeoutId);
   }, [engWord]);
 
   const handleAutoRemoveThai = () => {
-    //หา index ที่จะลบออกด้วยการเช็คว่าคำไหนไม่ถูกล็อค
+    //ให้มันหา index ที่จะลบออกด้วยการเช็คว่าคำไหนไม่ถูกล็อค
     const thaiWordToRemoveIndex = thaiWord.findIndex((word) => !word.locked);
 
     // ตรวจสอบว่ามีคำที่ต้องการลบหรือไม่
     if (thaiWordToRemoveIndex !== -1) {
-      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state ของ Word, thaiWord, และ engWord
+      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state 
       setWord((prevWord) => [
         ...prevWord,
         ...(thaiWordToRemoveIndex !== -1
@@ -62,9 +59,7 @@ const Checklist: React.FC = () => {
   const handleAutoRemoveEng = () => {
     const engWordToRemoveIndex = engWord.findIndex((word) => !word.locked);
 
-    // ตรวจสอบว่ามีคำที่ต้องการลบหรือไม่
     if (engWordToRemoveIndex !== -1) {
-      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state ของ Word, thaiWord, และ engWord
       setWord((prevWord) => [
         ...prevWord,
         ...(engWordToRemoveIndex !== -1 ? [engWord[engWordToRemoveIndex]] : []),
@@ -78,26 +73,6 @@ const Checklist: React.FC = () => {
       );
     }
   };
-
-  // const handleAutoRemove = () => {
-  //   const thaiWordToRemoveIndex = thaiWord.findIndex(word => !word.locked);
-  //   const engWordToRemoveIndex = engWord.findIndex(word => !word.locked);
-
-  //   // Remove words from the arrays if they are not locked
-  //   setWord((prevWord) => [
-  //     ...prevWord,
-  //     ...(thaiWordToRemoveIndex !== -1 ? [thaiWord[thaiWordToRemoveIndex]] : []),
-  //     ...(engWordToRemoveIndex !== -1 ? [engWord[engWordToRemoveIndex]] : []),
-  //   ]);
-
-  //   setThaiWord((prevThaiWord) =>
-  //     prevThaiWord.filter((_, index) => index !== thaiWordToRemoveIndex || prevThaiWord[index].locked)
-  //   );
-
-  //   setEngWord((prevEngWord) =>
-  //     prevEngWord.filter((_, index) => index !== engWordToRemoveIndex || prevEngWord[index].locked)
-  //   );
-  // };
 
   const getWord = async () => {
     try {
