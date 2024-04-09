@@ -67,8 +67,9 @@
 
 // export default VocabularyItem
 
-
 import React from "react";
+import { IoLockOpenOutline } from "react-icons/io5";
+import { IoLockClosedOutline } from "react-icons/io5";
 
 interface Props {
   checked: boolean;
@@ -102,12 +103,14 @@ const VocabularyItem: React.FC<Props> = ({
       {checked ? (
         <div>
           {" "}
+          <div className="flex gap-4 m-5 ">
           <span onClick={handleClick}>{word.word} </span>{" "}
-          <div>
             {word.locked ? (
-              <i className="bi bi-lock" onClick={handleLock}></i>
+              <IoLockClosedOutline onClick={handleLock} />
+              // <i className="bi bi-lock" onClick={handleLock}></i>
             ) : (
-              <i className="bi bi-unlock" onClick={handleLock}></i>
+              <IoLockOpenOutline onClick={handleLock} />
+              // <i className="bi bi-unlock" onClick={handleLock}></i>
             )}
           </div>
         </div>
