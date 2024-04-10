@@ -43,7 +43,8 @@ const Checklist: React.FC = () => {
       // ลบคำที่ไม่ได้ถูกล็อคออกจาก state
       setWord((prevWord) => [
         ...prevWord,
-        ...(thaiWordToRemoveIndex !== -1 ? [thaiWord[thaiWordToRemoveIndex]]
+        ...(thaiWordToRemoveIndex !== -1
+          ? [thaiWord[thaiWordToRemoveIndex]]
           : []),
       ]);
 
