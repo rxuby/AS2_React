@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   font-family: "Mitr", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-/* 
+  /* 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424; */
@@ -29,12 +28,15 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
   /* background-color: #fff5e8; */
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-image: url("./lf.jpg");
+  background-size: cover;
 }
 
 h1 {
@@ -62,16 +64,13 @@ button {
 }
 button:hover {
   background-color: #ffe26c;
-  border-color:#000000;
-  transition: .3s;
-
-  
+  border-color: #000000;
+  transition: 0.3s;
 }
 
-
 button:active {
-  background-color: #ffe26c; 
-  border-color: #000000; 
+  background-color: #ffe26c;
+  border-color: #000000;
   box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.5);
 }
 /* button:focus,
@@ -94,8 +93,8 @@ button:focus-visible {
 
 .word-list {
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
+  justify-content: space-between;
+  align-items: center;
 }
 
 .button-word-list {
@@ -113,40 +112,34 @@ button:focus-visible {
   margin-left: 0.5rem; /* ระยะห่างของไอคอน */
 }
 
-
-
 button .button-word-list span {
-  margin-right: 0.5rem; 
-  
+  margin-right: 0.5rem;
 }
-
 
 .lock-icon {
-  margin-left: 0.5rem; 
+  margin-left: 0.5rem;
 }
-
 
 .word-box {
-  
-  width: 100%;;
+  width: 1000px;
   height: 700px;
-  
 }
 
-.word-box-i{
+.word-box-i {
   background-color: #ffffff;
   border: 3px solid black;
   /* box-shadow: 1px 1px 0px rgb(0, 0, 0); */
-  
 }
 
-.vocab-list{
+/* .vocab-list {
   width: 800px;
-  
+} */
+
+.topic-list{
+  width: 1000px;
 }
 
-
-.top-i{
+.top-i {
   border: 3px solid black;
   background-color: #ffffff;
   box-shadow: 2px 2px 0px rgb(69, 58, 58);
@@ -156,7 +149,7 @@ button .button-word-list span {
   font-size: 20px;
 }
 
-span{
+span {
   padding: 0 30px;
 }
 /* #fde68a */

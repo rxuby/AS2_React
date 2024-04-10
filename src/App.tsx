@@ -8,7 +8,9 @@ function App() {
 
   return (
     <>
+    <div className='place-content-center'>
       <Checklist />
+      </div>
     </>
   );
 }

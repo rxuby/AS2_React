@@ -150,9 +150,10 @@ const Checklist: React.FC = () => {
   };
 
   return (
-    <div className="vocab-list ">
+    <div>
       <Topic />
-      <div className="word-box grid grid-cols-3 gap-6">
+
+      <div className="word-box grid grid-cols-3 gap-3">
         <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
             // title="คำศัพท์"
