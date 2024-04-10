@@ -21,7 +21,7 @@ const Checklist: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemoveThai();
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timeoutId);
   }, [thaiWord]);
@@ -29,7 +29,7 @@ const Checklist: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemoveEng();
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timeoutId);
   }, [engWord]);
