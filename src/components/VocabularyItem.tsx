@@ -1,6 +1,8 @@
 import React from "react";
 import { IoLockOpenOutline } from "react-icons/io5";
 import { IoLockClosedOutline } from "react-icons/io5";
+import { BiLockAlt } from "react-icons/bi";
+import { BiLockOpenAlt } from "react-icons/bi";
 
 interface Props {
   checked: boolean;
@@ -25,7 +27,8 @@ const VocabularyItem: React.FC<Props> = ({
     }
   };
 
-  const handleLock = () => {
+  const handleLock = (e:React.MouseEvent<SVGElement, MouseEvent>) => {
+    e.stopPropagation()
     onLock(word);
   };
 
@@ -33,14 +36,14 @@ const VocabularyItem: React.FC<Props> = ({
     <>
       {checked ? (
         <div>
-          <div className="word-list place-content-center">
+          <div onClick={handleClick} className="word-list place-content-center">
             <button className="button-word-list text-center place-content-center flex ">
-            <span onClick={handleClick}>{word.word} </span>{" "}
+            <span>{word.word} </span>{" "}
             {word.locked ? (
-              <IoLockClosedOutline onClick={handleLock} className="icon" />
+              <BiLockAlt onClick={handleLock} className="icon" />
             ) : (
               // <i className="bi bi-lock" onClick={handleLock}></i>
-              <IoLockOpenOutline onClick={handleLock} className="icon" />
+              <BiLockOpenAlt onClick={handleLock} className="icon" />
               // <i className="bi bi-unlock" onClick={handleLock}></i>
             )}
             </button>

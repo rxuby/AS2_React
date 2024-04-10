@@ -21,7 +21,7 @@ const Checklist: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemoveThai();
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timeoutId);
   }, [thaiWord]);
@@ -29,7 +29,7 @@ const Checklist: React.FC = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAutoRemoveEng();
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timeoutId);
   }, [engWord]);
@@ -153,7 +153,7 @@ const Checklist: React.FC = () => {
     <div className="vocab-list ">
       <Topic />
       <div className="word-box grid grid-cols-3 gap-6">
-        <div className="word-box-i border rounded-[10px] p-[20px]">
+        <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
             // title="คำศัพท์"
             check={false}
@@ -163,7 +163,7 @@ const Checklist: React.FC = () => {
           />
         </div>
 
-        <div className="word-box-i border rounded-[10px] p-[20px]">
+        <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
             // title="ภาษาไทย"
             check={true}
@@ -173,7 +173,7 @@ const Checklist: React.FC = () => {
           />
         </div>
 
-        <div className="word-box-i border rounded-[10px] p-[20px]">
+        <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
             // title="ภาษาอังกฤษ"
             check={true}

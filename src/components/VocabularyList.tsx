@@ -19,11 +19,11 @@ const VocabularyList: React.FC<Props> = ({ vocabulary, onClick, check,onLock }) 
         {/* <h2>{title}</h2> */}
         {vocabulary.map((word, index) => (
           <VocabularyItem
-            key={index}
+            // key={index}
             word={word}
             checked={check}
             onClick={() => onClick(index, word.lang, word.locked )}
-            onLock={() => onLock(index,word.lang, word.locked )}
+            onLock={() => onLock(index, word.lang, word.locked )}
           />
         ))}
       </div>
