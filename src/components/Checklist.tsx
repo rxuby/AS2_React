@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import VocabularyList from "./VocabularyList";
 import Topic from "./Topic";
+import { motion } from "framer-motion"
 
 interface Word {
   lang: string;
@@ -96,8 +97,9 @@ const Checklist: React.FC = () => {
   return (
     <div>
       <Topic />
-      <div className="word-box grid grid-cols-3 gap-3">
-        <div className="word-box-i border rounded-[20px] p-[20px]">
+      <div className="word-box grid grid-cols-3 gap-3 ">
+        <div className="word-box-i border rounded-[20px] p-[20px] h-[30em] overflow-y-auto">
+        {/* overflow-y-auto overflow-hidden h-[32rem] */}
           <VocabularyList
             check={false}
             vocabulary={word}
@@ -105,7 +107,7 @@ const Checklist: React.FC = () => {
             onLock={handleLockWord}
           />
         </div>
-        <div className="word-box-i border rounded-[20px] p-[20px]">
+        <div className="word-box-i border rounded-[20px] p-[20px] h-[30em]">
           <VocabularyList
             check={true}
             vocabulary={thaiWord}
@@ -113,7 +115,7 @@ const Checklist: React.FC = () => {
             onLock={handleLockWord}
           />
         </div>
-        <div className="word-box-i border rounded-[20px] p-[20px]">
+        <div className="word-box-i border rounded-[20px] p-[20px] h-[30em]">
           <VocabularyList
             check={true}
             vocabulary={engWord}

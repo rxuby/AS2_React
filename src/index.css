@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  scrollbar-width: none !important ; 
+}
 :root {
   font-family: "Mitr", sans-serif;
   line-height: 1.5;
@@ -10,6 +13,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+  
+  
 }
 
 a {
@@ -61,25 +69,13 @@ button:hover {
   background-color: #ffe26c;
   border-color: #000000;
   transition: 0.3s;
+  
 }
 
 button:active {
   background-color: #ffe26c;
   border-color: #000000;
   box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.5);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 .word-list {
@@ -109,8 +105,9 @@ button:active {
 
 .word-box-i {
   background-color: #ffffff;
-  border: 3px solid black;
+  border: 3px solid rgb(0, 0, 0);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.197);
+  /* scrollbar-width: none; */
 }
 
 .topic-list {
@@ -118,9 +115,11 @@ button:active {
 }
 
 .top-i {
+  width: 100%;
   border: 3px solid black;
+  /* border-bottom: none; */
   background-color: #ffe26c;
-  box-shadow: 2px 2px 0px rgb(0, 0, 0);
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
 }
 
 .icon {
@@ -138,3 +137,4 @@ span {
 
 /* #fde68a */
 /* #fff5e8 */
+/* #67e8f9 */
