@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { BiLockAlt } from "react-icons/bi";
 import { BiLockOpenAlt } from "react-icons/bi";
 
@@ -18,9 +18,9 @@ const VocabularyItem: React.FC<Props> = ({
   checked,
   onLock,
 }) => {
+  const timeoutId = useRef<NodeJS.Timeout>();
   const handleClick = () => {
     if (!word.locked) {
-      // ตอนทำTimeRemoveให้เพิ่มตรงนี้เช็คว่าคำศัพท์ถูกล็อคไหมแต่มันจำเป็นไหม
       onClick(word);
     }
   };
@@ -29,6 +29,21 @@ const VocabularyItem: React.FC<Props> = ({
     e.stopPropagation();
     onLock(word);
   };
+
+  useEffect(() => {
+    if (!word.locked) {
+      timeoutId.current = setTimeout(() => {
+        if (checked) {
+          handleClick();
+        }
+      }, 5000);
+    }
+  
+    return () => {
+      clearTimeout(timeoutId.current);
+    };
+  }, [checked, word.locked]);
+  
 
   return (
     <>
@@ -40,9 +55,7 @@ const VocabularyItem: React.FC<Props> = ({
               {word.locked ? (
                 <BiLockAlt onClick={handleLock} className="icon" />
               ) : (
-                // <i className="bi bi-lock" onClick={handleLock}></i>
                 <BiLockOpenAlt onClick={handleLock} className="icon" />
-                // <i className="bi bi-unlock" onClick={handleLock}></i>
               )}
             </button>
           </div>

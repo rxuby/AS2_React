@@ -17,64 +17,6 @@ const Checklist: React.FC = () => {
     getWord();
   }, []);
 
-  //เพิ่มฟังก์ชัน useEffect อีกอันสำหรับ timeRemove
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      handleAutoRemoveThai();
-    }, 5000);
-
-    return () => clearTimeout(timeoutId);
-  }, [thaiWord]);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      handleAutoRemoveEng();
-    }, 5000);
-
-    return () => clearTimeout(timeoutId);
-  }, [engWord]);
-
-  const handleAutoRemoveThai = () => {
-    //ให้มันหา index ที่จะลบออกด้วยการเช็คว่าคำไหนไม่ถูกล็อค
-    const thaiWordToRemoveIndex = thaiWord.findIndex((word) => !word.locked);
-
-    // ตรวจสอบว่ามีคำที่ต้องการลบหรือไม่
-    if (thaiWordToRemoveIndex !== -1) {
-      // ลบคำที่ไม่ได้ถูกล็อคออกจาก state
-      setWord((prevWord) => [
-        ...prevWord,
-        ...(thaiWordToRemoveIndex !== -1
-          ? [thaiWord[thaiWordToRemoveIndex]]
-          : []),
-      ]);
-
-      setThaiWord((prevThaiWord) =>
-        prevThaiWord.filter(
-          (_, index) =>
-            index !== thaiWordToRemoveIndex || prevThaiWord[index].locked
-        )
-      );
-    }
-  };
-
-  const handleAutoRemoveEng = () => {
-    const engWordToRemoveIndex = engWord.findIndex((word) => !word.locked);
-
-    if (engWordToRemoveIndex !== -1) {
-      setWord((prevWord) => [
-        ...prevWord,
-        ...(engWordToRemoveIndex !== -1 ? [engWord[engWordToRemoveIndex]] : []),
-      ]);
-
-      setEngWord((prevEngWord) =>
-        prevEngWord.filter(
-          (_, index) =>
-            index !== engWordToRemoveIndex || prevEngWord[index].locked
-        )
-      );
-    }
-  };
-
   const getWord = async () => {
     try {
       const response = await fetch("word.json");
@@ -82,7 +24,6 @@ const Checklist: React.FC = () => {
         throw new Error("Failed to fetch words");
       }
       const data = await response.json();
-
       const wordData: Word[] = data.map((item: any) => ({
         lang: item.lang,
         word: item.word,
@@ -114,12 +55,14 @@ const Checklist: React.FC = () => {
         let clickedThaiWord = thaiWord[index];
         setWord((prevWord) => [...prevWord, clickedThaiWord]);
         setThaiWord((prevThaiWord) =>
-          prevThaiWord.filter((_, i) => i !== index)
+          prevThaiWord.filter((word) => word.word !== clickedThaiWord.word)
         );
       } else if (lang === "EN") {
         let clickedEngWord = engWord[index];
         setWord((prevWord) => [...prevWord, clickedEngWord]);
-        setEngWord((prevEngWord) => prevEngWord.filter((_, i) => i !== index));
+        setEngWord((prevEngWord) =>
+          prevEngWord.filter((word) => word.word !== clickedEngWord.word)
+        );
       }
     }
   };
@@ -153,31 +96,25 @@ const Checklist: React.FC = () => {
   return (
     <div>
       <Topic />
-
       <div className="word-box grid grid-cols-3 gap-3">
         <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
-            // title="คำศัพท์"
             check={false}
             vocabulary={word}
             onClick={handleClick}
             onLock={handleLockWord}
           />
         </div>
-
         <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
-            // title="ภาษาไทย"
             check={true}
             vocabulary={thaiWord}
             onClick={handleResetWord}
             onLock={handleLockWord}
           />
         </div>
-
         <div className="word-box-i border rounded-[20px] p-[20px]">
           <VocabularyList
-            // title="ภาษาอังกฤษ"
             check={true}
             vocabulary={engWord}
             onClick={handleResetWord}

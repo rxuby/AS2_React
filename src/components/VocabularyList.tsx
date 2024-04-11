@@ -12,7 +12,6 @@ interface Props {
   onClick: (index: number, lang: string, locked: boolean) => void;
   onLock: (index: number, lang: string, locked: boolean) => void;
 }
-//({ title, vocabulary, onClick, check,onLock })
 const VocabularyList: React.FC<Props> = ({
   vocabulary,
   onClick,
@@ -21,10 +20,9 @@ const VocabularyList: React.FC<Props> = ({
 }) => {
   return (
     <div className="cursor-pointer">
-      {/* <h2>{title}</h2> */}
       {vocabulary.map((word, index) => (
         <VocabularyItem
-          // key={index}
+          key={word.word}
           word={word}
           checked={check}
           onClick={() => onClick(index, word.lang, word.locked)}
